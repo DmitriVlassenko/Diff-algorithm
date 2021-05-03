@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Diff algorithm</title>
+  <meta name="description" content="Find difference in text">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Dmitri Vlassenko">
+  <link rel="stylesheet" href="css/diff.css">
+</head>
+
+<body>
+
+<div class="info">
+  <h1>Diff algorithm with JS</h1>
+  <h2>Type old and modified texts in separate text areas and click Compare button</h2>
+  <h2>Differences between the contents will be shown in blue and yellow</h2>
+</div>
+
+<div class="textareas">
+<label for="left"></label>
+<textarea name="left" id="left" cols="30" rows="10">This is not a coding exorcist. True!</textarea>
+
+<label for="right"></label>
+<textarea name="right" id="right" cols="30" rows="10">This is a hard coding exercise. Is it?</textarea>
+</div>
+
+<div class="buttons">
+  <a href="#results" class="fancy-button" onclick="startWorker()">Compare</a>
+  <a href="#" class="fancy-button stop" onclick="stopWorker()">Stop</a>
+</div>
+
+<div class="info" id="results">
+<h3>Result below:</h3>
+<p><output id="text"></output></p>
+</div>
+
+<script>
+  let w;
+  function startWorker() {
+    if(typeof(Worker) !== "undefined") {
+      if(typeof(w) == "undefined") {
+        w = new Worker("js/myWorker.js");
+      }
+
+      w.postMessage({
+        text1: document.getElementById("left").value.split(' '),
+          text2: document.getElementById("right").value.split(' ')
+      })
+
+      w.onmessage = function(event) {
+        document.getElementById("text").innerHTML = event.data;
+      };
+    } else {
+      document.getElementById("text").innerHTML = "Sorry, your browser does not support Web Workers...";
+    }
+  }
+
+  function stopWorker() {w.terminate();w = undefined;}
+</script>
+</body>
+
+</html>
