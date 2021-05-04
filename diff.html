@@ -12,10 +12,13 @@
 
 <body>
 
+<div class="wrapper">
 <div class="info">
-  <h1>Diff algorithm with JS</h1>
-  <h2>Type old and modified texts in separate text areas and click Compare button</h2>
-  <h2>Differences between the contents will be shown in blue and yellow</h2>
+  <div class="instructions">
+    <h1>Diff algorithm with JS</h1>
+    <h2>Type old and modified texts in separate text areas and click Compare button</h2>
+    <h2>Differences between the contents will be shown in blue and yellow</h2>
+  </div>
 </div>
 
 <div class="textareas">
@@ -33,7 +36,10 @@
 
 <div class="info" id="results">
 <h3>Result below:</h3>
+  <div class="res">
 <p><output id="text"></output></p>
+  </div>
+</div>
 </div>
 
 <script>

@@ -12,6 +12,7 @@ html {
 }
 
 body {
+    text-align: center;
     min-height: 100vh;
     display: grid;
     place-items: center;
@@ -37,11 +38,14 @@ textarea:focus {
 }
 
 .textareas {
-    display: inline;
+    display: block;
+    text-align: center;
+    margin-bottom: 1em;
 }
 
 .info {
     text-align: center;
+    margin-top: 3em;
 }
 
 .fancy-button {
@@ -104,4 +108,23 @@ textarea:focus {
 .fancy-button:hover::after,
 .fancy-button:focus::after {
     opacity: 1;
+}
+
+@media screen and (max-width: 992px) {
+    .fancy-button {
+        font-size: 2em;
+        margin-bottom: 3.5em;
+    }
+    textarea {
+        width: 80%;
+        height: 100%;
+    }
+    .textareas {
+        margin-top: 3em;
+        margin-bottom: 3em;
+        font-size: 2em;
+    }
+    .res {
+        font-size: 2.5em;
+    }
 }
