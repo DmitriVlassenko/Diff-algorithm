@@ -3,7 +3,7 @@ onmessage = e => {
     let a2 = e.data.text2
 
     if (a1 === null || a2 === null) {
-        return postMessage(`<span style="color: #e06c6c">` + 'Error: dot, question mark or exclamation mark characters must be used at the end of a sentence.' + '</span>')
+        return postMessage(`<span style="color: #e06c6c"> Error: dot, question mark or exclamation mark characters must be used at the end of a sentence. </span>`)
     }
 
     let arr1 = a1.map(array => array.trim())
@@ -14,15 +14,15 @@ onmessage = e => {
     let result = diff(arr1, arr2, common.match(/.*?[?!.]/g))
 
     function diff(left,right, common) {
-        let long_counter = 0;
+        let long_counter = 0
         let short_counter = 0
-        let common_counter = 0;
+        let common_counter = 0
         let short_temp = []
         let long_temp = []
-        const result = [];
+        const result = []
 
         if (common === null) {
-            return (`<span style="color: #e06c6c">` + 'Error: There is nothing in common' + '</span>');
+            return (`<span style="color: #e06c6c"> Error: There is nothing in common </span>`)
         }
 
         common = common.map(s => s.trim())
@@ -37,13 +37,13 @@ onmessage = e => {
                 }
                 else if (long[long_counter] !== common[common_counter]) {
                     while (long[long_counter] !== common[common_counter]) {
-                        result.push(`<span style="color: #64b5f6">` + long[long_counter] + '</span>');
+                        result.push(`<span style="color: #64b5f6"> ${long[long_counter]} </span>`)
                         long_counter++
                     }
                 }
-                result.push(short[short_counter]);
-                common_counter++;
-                short_counter++;
+                result.push(short[short_counter])
+                common_counter++
+                short_counter++
             }
             else if (long[long_counter] !== common[common_counter]) {
                 while (short[short_counter] !== common[common_counter] && long[long_counter] !== common[common_counter]) {
@@ -63,18 +63,18 @@ onmessage = e => {
                 long_temp = []
             }
             else if (long[long_counter] === common[common_counter]) {
-                result.push(`<span style="color: #ffb74d">` + short[short_counter] + '</span>');
+                result.push(`<span style="color: #ffb74d"> ${short[short_counter]} </span>`)
                 short_counter++
             }
 
         }
 
         while (long_counter < long.length) {
-            result.push(`<span style="color: #64b5f6">` + long[long_counter] + '</span>');
+            result.push(`<span style="color: #64b5f6"> ${long[long_counter]} </span>`)
             long_counter++
         }
 
-        return result.join(' ');
+        return result.join(' ')
     }
 
     postMessage(result)
@@ -82,21 +82,21 @@ onmessage = e => {
 
 function subsequence(arr1, arr2, i, j, cache) {
     if (arr1.length === i || arr2.length === j) {
-        return '';
+        return ''
     }
     if (cache[i][j]) {
-        return cache[i][j];
+        return cache[i][j]
     }
     if (arr1[i] === arr2[j]) {
-        cache[i][j] = arr1[i] + ' ' + subsequence(arr1, arr2, i + 1, j + 1, cache);
+        cache[i][j] = arr1[i] + ' ' + subsequence(arr1, arr2, i + 1, j + 1, cache)
     } else {
-        const next1 = subsequence(arr1, arr2, i + 1, j, cache);
-        const next2 = subsequence(arr1, arr2, i, j + 1, cache);
+        const next1 = subsequence(arr1, arr2, i + 1, j, cache)
+        const next2 = subsequence(arr1, arr2, i, j + 1, cache)
 
-        cache[i][j] = (next1.length > next2.length) ? next1 : next2;
+        cache[i][j] = (next1.length > next2.length) ? next1 : next2
     }
 
-    return cache[i][j];
+    return cache[i][j]
 }
 
 function wordSubsequence(short, long) {
@@ -107,36 +107,37 @@ function wordSubsequence(short, long) {
     const word_common = subsequence(short, long, 0, 0, word_cache)
 
     function diff(short, long, common) {
-        let long_counter = 0;
-        const result = [];
+        let long_counter = 0
+        let common_counter = 0
+        const result = []
         common.pop()
 
-        for (let short_counter = 0, common_counter = 0; short_counter < short.length; short_counter++) {
+        for (let short_counter = 0; short_counter < short.length; short_counter++) {
             if (short[short_counter] === common[common_counter]) {
                 if (long[long_counter] === common[common_counter]) {
-                    long_counter++;
+                    long_counter++
                 }
                 else if (long[long_counter] !== common[common_counter]) {
                     while (long[long_counter] !== common[common_counter]) {
-                        result.push(`<span style="color: #64b5f6">` + long[long_counter] + '</span>');
+                        result.push(`<span style="color: #64b5f6"> ${long[long_counter]} </span>`)
                         long_counter++
                     }
                     long_counter++
                 }
-                result.push(short[short_counter]);
-                common_counter++;
+                result.push(short[short_counter])
+                common_counter++
             }
             else {
-                result.push(`<span style="color: #ffb74d">` + short[short_counter] + '</span>');
+                result.push(`<span style="color: #ffb74d"> ${short[short_counter]} </span>`)
             }
         }
 
         while (long_counter < long.length) {
-            result.push(`<span style="color: #64b5f6">` + long[long_counter] + '</span>');
+            result.push(`<span style="color: #64b5f6"> ${long[long_counter]} </span>`)
             long_counter++
         }
 
-        return result.join(' ');
+        return result.join(' ')
     }
 
     let result = diff(short, long, word_common.split(' '))
