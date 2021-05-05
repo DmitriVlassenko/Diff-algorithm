@@ -7,7 +7,7 @@
   <meta name="description" content="Find difference in text">
   <meta name="keywords" content="HTML, CSS, JavaScript">
   <meta name="author" content="Dmitri Vlassenko">
-  <link rel="stylesheet" href="css/diff.css">
+  <link rel="stylesheet" href="CSS/diff.css">
 </head>
 
 <body>
@@ -44,12 +44,12 @@
   function startWorker() {
     if(typeof(Worker) !== "undefined") {
       if(typeof(w) == "undefined") {
-        w = new Worker("js/myWorker.js");
+        w = new Worker("JS/myWorker.js");
       }
 
       w.postMessage({
-        text1: document.getElementById("left").value.match(/.*?[?!.]/g),
-          text2: document.getElementById("right").value.match(/.*?[?!.]/g)
+        text1: document.getElementById("left").value.match(/.*?[?!.\n]/g),
+          text2: document.getElementById("right").value.match(/.*?[?!.\n]/g)
       })
 
       w.onmessage = function(event) {
