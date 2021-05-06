@@ -40,6 +40,7 @@ onmessage = e => {
                         result.push(`<span style="color: #64b5f6"> ${long[long_counter]} </span>`)
                         long_counter++
                     }
+                    long_counter++
                 }
                 result.push(short[short_counter])
                 common_counter++
