@@ -33,11 +33,28 @@ onmessage = e => {
                     if (long[long_counter] === common[common_counter]) {
                         long_counter++
                     }
+<<<<<<< HEAD
                     else if (long[long_counter] !== common[common_counter]) {
                         while (long[long_counter] !== common[common_counter]) {
                             result.push(`<span style="color: #64b5f6"> ${long[long_counter]} </span>`);
                             long_counter++
                         }
+=======
+                    long_counter++
+                }
+                result.push(short[short_counter])
+                common_counter++
+                short_counter++
+            }
+            else if (long[long_counter] !== common[common_counter]) {
+                while (short[short_counter] !== common[common_counter] && long[long_counter] !== common[common_counter]) {
+                    while (short[short_counter] !== common[common_counter]) {
+                        short_temp.push(short[short_counter])
+                        short_counter++
+                    }
+                    while (long[long_counter] !== common[common_counter]) {
+                        long_temp.push(long[long_counter])
+>>>>>>> d33ccf05954fd4281e15a39ebabc7628fe4a5557
                         long_counter++
                     }
                     result.push(short[short_counter]);
