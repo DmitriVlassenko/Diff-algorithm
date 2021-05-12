@@ -23,10 +23,10 @@
 
 <div class="textareas">
 <label for="left"></label>
-<textarea name="left" id="left" cols="30" rows="10">This have to be in white. That part only in left window. Text contains different words. Equal again. This text is also longer.</textarea>
+<textarea name="left" id="left" cols="30" rows="10">This is a hard coding exercise. Is it?</textarea>
 
 <label for="right"></label>
-<textarea name="right" id="right" cols="30" rows="10">This have to be in white. Text contains different word. Equal again. Right part only.</textarea>
+<textarea name="right" id="right" cols="30" rows="10">This is not a coding exorcist. True!</textarea>
 </div>
 
 <div class="buttons">
@@ -48,8 +48,8 @@
       }
 
       w.postMessage({
-        text1: document.getElementById("left").value.match(/.*?[?!.\n]/g),
-          text2: document.getElementById("right").value.match(/.*?[?!.\n]/g)
+        text1: document.getElementById("left").value  + '\n',
+          text2: document.getElementById("right").value + '\n'
       })
 
       w.onmessage = function(event) {
