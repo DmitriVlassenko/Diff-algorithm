@@ -10,7 +10,7 @@ onmessage = e => {
     let arr1 = a1.map(array => array.trim())
     let arr2 = a2.map(array => array.trim())
 
-    const cache = [...Array(arr1.length)].map(() => Array(arr2.length))
+    const cache = arr1.map(() => Array(arr2.length))
     const common = subsequence(arr1, arr2, 0, 0, cache)
     let result = diff(arr1, arr2, common.match(/.*?[,?!.]/g))
 
